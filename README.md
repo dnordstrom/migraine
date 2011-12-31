@@ -15,12 +15,13 @@ MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
 ### Installation
 
     myproject.com
-     > gem install migraine`
+     > gem install migraine
 
 ### Usage
 
     myproject.com
      > vim migrate.rb
+
 
     ##
     # Sample migration file
@@ -46,6 +47,7 @@ MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
       map "persistance_token"
       map "perishable_token"
     end
+
 
     myproject.com
      > rb migrate.rb
