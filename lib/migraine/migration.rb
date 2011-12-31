@@ -4,10 +4,10 @@ module Migraine
     # be a Hash containing :to and :from keys, specifying
     # database connection URLs, e.g.:
     #
-    # migration = Migraine::Migration.new(
-    #   from: "mysql://root:root@localhost/myproj_old",
-    #   to:   "mysql://root:root@localhost/myproj"
-    # )
+    #   migration = Migraine::Migration.new(
+    #     from: "mysql://root:root@localhost/myproj_old",
+    #     to:   "mysql://root:root@localhost/myproj"
+    #   )
     #
     # @param [Hash] Hash containing source and destination.
     def initialize(databases)
