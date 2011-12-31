@@ -43,7 +43,6 @@ Sequel Ruby gem.
       # Changed column names
       map "crypted_password" => "encrypted_password"
       map "salt" => "password_salt"
-      # [...]
     
       # Unchanged column names
       map "remember_token"
