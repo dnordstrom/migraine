@@ -19,9 +19,12 @@ MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
 
 ### Usage
 
+#### Create migration file
+
     myproject.com
      > vim migrate.rb
 
+#### Tell Migraine what and where to migrate
 
     ##
     # Sample migration file
@@ -48,6 +51,9 @@ MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
       map "perishable_token"
     end
 
+    migration.run
+
+#### Run migration file
 
     myproject.com
      > rb migrate.rb
