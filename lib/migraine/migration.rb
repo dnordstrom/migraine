@@ -1,6 +1,4 @@
 module Migraine
-  # Deals with general migration settings such as the source and
-  # destination databases.
   class Migration
     # Specify source and destination databases. Argument should
     # be a Hash containing :to and :from keys, specifying
