@@ -4,7 +4,8 @@
 
 Migraine is a simple gem to assist in writing data migration
 scripts in Ruby. It supports various database adapters (e.g.
-MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
+MySQL, SQLite3, PostgreSQL) through its only dependency; the
+Sequel Ruby gem.
 
 ## Requirements
 
