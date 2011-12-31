@@ -6,7 +6,7 @@ module Migraine
     #
     # migration = Migraine::Migration.new(
     #   from: "mysql://root:root@localhost/myproj_old",
-    #   to:   "mysql://root:root@localhost/myproj_wip"
+    #   to:   "mysql://root:root@localhost/myproj"
     # )
     #
     # @param [Hash] Hash containing source and destination.
