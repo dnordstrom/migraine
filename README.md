@@ -1,5 +1,4 @@
 # Migraine Ruby Gem
-## For Ruby Database Migration Scripts
 
 ### Introduction
 
