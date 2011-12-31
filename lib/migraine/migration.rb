@@ -28,7 +28,7 @@ module Migraine
       if !databases.is_a? Hash || databases.length !== 2
         raise ArgumentError, "Argument must be a Hash containing two elements;
           source (:from) and destination (:to) databases."
-      elsif databases[:from].nil? || databases[:to].nil? 
+      elsif databases[:from] || databases[:to]
         raise ArgumentError, "Both source (:from) and destination (:to)
           databases need to be specified."
       end
