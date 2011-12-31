@@ -14,38 +14,38 @@ MySQL, SQLite3, PostgreSQL) through the Sequel Ruby gem.
 
 ### Installation
 
-  myproject.com
-   > gem install migraine`
+    myproject.com
+     > gem install migraine`
 
 ### Usage
 
-  myproject.com
-   > vim migrate.rb
+    myproject.com
+     > vim migrate.rb
 
-  ##
-  # Sample migration file
-  ##
-  
-  require "migraine"
+    ##
+    # Sample migration file
+    ##
+    
+    require "migraine"
+    
+    migration = Migraine::Migration.new(
+      from: "mysql://root:root@localhost/myproj_old",
+      to:   "mysql://root:root@localhost/myproj_new"
+    )
+    
+    migration.map "products" => "spree_products"
+    
+    migration.map "users" => "spree_users" do
+      # Changed column names
+      map "crypted_password" => "encrypted_password"
+      map "salt" => "password_salt"
+      # [...]
+    
+      # Unchanged column names
+      map "remember_token"
+      map "persistance_token"
+      map "perishable_token"
+    end
 
-  migration = Migraine::Migration.new(
-    from: "mysql://root:root@localhost/myproj_old",
-    to:   "mysql://root:root@localhost/myproj_new"
-  )
-
-  migration.map "products" => "spree_products"
-
-  migration.map "users" => "spree_users" do
-    # Changed column names
-    map "crypted_password" => "encrypted_password"
-    map "salt" => "password_salt"
-    # [...]
-
-    # Unchanged column names
-    map "remember_token"
-    map "persistance_token"
-    map "perishable_token"
-  end
-
-  myproject.com
-   > rb migrate.rb
+    myproject.com
+     > rb migrate.rb
