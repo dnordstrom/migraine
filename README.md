@@ -26,10 +26,6 @@ Sequel Ruby gem.
 
 ### Tell Migraine what and where to migrate
 
-    ##
-    # Sample migration file
-    ##
-    
     require "migraine"
     
     migration = Migraine::Migration.new(
