@@ -30,11 +30,15 @@ Sequel Ruby gem.
     
     migration = Migraine::Migration.new(
       from: "mysql://root:root@localhost/myproj_old",
-      to:   "mysql://root:root@localhost/myproj_new"
+      to:   "mysql://root:root@localhost/myproj"
     )
     
+    # Implicitly map all columns in source table to respective
+    # columns in destination table. Should generally only be done
+    # when table structure is the same.
     migration.map "products" => "spree_products"
     
+    # Explicitly tell Migraine which columns to map, and where.
     migration.map "users" => "spree_users" do
       # Changed column names
       map "crypted_password" => "encrypted_password"
@@ -51,4 +55,4 @@ Sequel Ruby gem.
 ### Run migration file
 
     myproject.com
-     > rb migrate.rb
+     > ruby migrate.rb
