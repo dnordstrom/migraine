@@ -24,6 +24,9 @@ module Migraine
       end
     end
 
+    # Runs the migration using the mappings that have been set
+    # up. Walks through the nested Map objects, copying database
+    # records from source to destination.
     def run
       connect
       src = @source_connection
@@ -58,6 +61,32 @@ module Migraine
 
       log "-------------------\n" +
           "MIGRATION COMPLETED"
+    end
+
+    # Generates a new migration file template by analyzing the
+    # source and destination connections, saving it to the
+    # location specified in the argument. This makes it easy to
+    # create migration files where you can fill in destination
+    # tables/columns instead of writing it all by hand.
+    #
+    # @param [String] Relative path to file.
+    def generate(file)
+      connect
+      src = @source_connection
+      dest = @destination_connection
+
+      File.open(path, 'w') do |file|
+        file.puts "require 'migraine'\n\n"
+        file.puts <<-eos
+          migration = Migraine::Migration.new(
+            from: #{source},
+            to: #{destination}
+          )
+        eos
+
+        tables = src.run("show tables")
+        print "\n\n" + tables.inspect + "\n\n"
+      end
     end
 
     private
