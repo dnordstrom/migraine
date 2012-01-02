@@ -35,7 +35,6 @@ Sequel Ruby gem.
     
     migration.map "products" => "spree_products"
     migration.map "users" => "spree_users" do
-      # Changed column names
       map "crypted_password" => "encrypted_password"
       map "salt" => "password_salt"
     
