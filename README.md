@@ -33,18 +33,12 @@ Sequel Ruby gem.
       to:   "mysql://root:root@localhost/myproj"
     )
     
-    # Implicitly map all columns in source table to respective
-    # columns in destination table. Should generally only be done
-    # when table structure is the same.
     migration.map "products" => "spree_products"
-    
-    # Explicitly tell Migraine which columns to map, and where.
     migration.map "users" => "spree_users" do
       # Changed column names
       map "crypted_password" => "encrypted_password"
       map "salt" => "password_salt"
     
-      # Unchanged column names
       map "remember_token"
       map "persistance_token"
       map "perishable_token"
