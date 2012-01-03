@@ -97,7 +97,7 @@ to run the migration.
     myproject.com
      > ruby migrate.rb
 
-## Generating migrations
+## Generating migration files
 
 Migraine can even generate migration files for you. This is
 useful for databases with many tables, where you don't want to
