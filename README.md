@@ -41,13 +41,14 @@ It's very simple, I promise.
     )
 
 Map source tables to destination tables. If the columns are
-unchanged in destination you do not need to provide instructions
-in a block. Simply map source to destination table:
+unchanged in the destination table, you do not need to provide
+any block with instructions. Simply map source table to
+destination table.
     
     migration.map "products" => "spree_products"
 
-If both source and destination tables also have the same name,
-you can make it even shorter.
+If source and destination tables have the same name in both
+databases, you can make it even shorter.
 
     migration.map "products"
 
