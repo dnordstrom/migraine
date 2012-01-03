@@ -179,9 +179,11 @@ migration file (abbreviated since Spree has many tables.)
     )
 
     migration.prefix 'spree_'
+
     migration.generate 'generated.rb'
 
-#### ruby generate.rb
+After running `ruby generate.rb`, Migraine will generate the
+following file.
 
 #### generated.rb
 
