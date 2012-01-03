@@ -30,7 +30,7 @@ Require the Migraine gem.
 
     require 'migraine'
 
-Create a migration instance, specifying source and destination
+Create a migration, specifying source and destination
 databases.
 
     migration = Migraine::Migration.new(
