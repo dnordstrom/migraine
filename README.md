@@ -30,8 +30,10 @@ Require the Migraine gem.
 
     require 'migraine'
 
-Create a migration, specifying source and destination
-databases.
+Create a migration, specifying source and destination databases.
+For information about how to write the connection URI's, see the
+documentation of [Sequel](https://github.com/jeremyevans/sequel).
+It's very simple, I promise.
 
     migration = Migraine::Migration.new(
       from: "mysql://root:root@localhost/myproj_old",
