@@ -19,12 +19,12 @@ through its only dependency, the
     myproject.com
      > gem install migraine
 
-## TODO
+## Todo
 
 1. `Migraine::Map#map` (or separate method) should be able to deal
    with column type differences between source and destination. The
    method should accept a block argument that takes source record
-   as input, and relies on developer to manipulate that data and
+   as input, and relies on developer to manipulate that and
    return valid destination data.
 
         migration.map 'table' do
