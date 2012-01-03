@@ -2,10 +2,12 @@
 
 ## Introduction
 
-Migraine is a simple gem to assist in writing data migration
-scripts in Ruby. It supports various database adapters (e.g.
-MySQL, SQLite3, PostgreSQL) through its only dependency; the
-Sequel Ruby gem.
+Have you ever felt enthusiastic about migrating data from one
+database to another? Me neither. Migraine is a simple gem to
+assist in writing data migration scripts in Ruby. It supports
+various database adapters (e.g. MySQL, SQLite3, PostgreSQL)
+through its only dependency; the
+[Sequel](https://github.com/jeremyevans/sequel) Ruby gem.
 
 ## Requirements
 
