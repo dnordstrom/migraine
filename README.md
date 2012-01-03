@@ -56,7 +56,7 @@ databases, you can make it even shorter.
     migration.map "products"
 
 On the other hand, if the column names have changed at the
-destination, you can prodivde instructions on how to map them.
+destination, you can provide instructions on how to map them.
 
     migration.map "users" => "spree_users" do
       map "crypted_password" => "encrypted_password"
