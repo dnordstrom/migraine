@@ -85,11 +85,7 @@ destination, you can provide instructions on how to map them.
     end
 
 **TODO:** In the future, Migraine will provide methods for dealing
-with differences in column types. You should then be able to tell
-Migraine how you want it to convert data from a source record to
-a destination record. This will probably be done by passing a
-block that takes source data as input, and relies on you to
-manipulate it and return the destination data.
+with differences in column types. See Todo section above.
 
 When you have provided the mappings, tell Migraine that you want
 to run the migration.
