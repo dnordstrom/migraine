@@ -16,6 +16,9 @@ module Migraine
     # create migration files where you can fill in destination
     # tables/columns instead of writing it all by hand.
     #
+    # TODO: Factor out any dependencies on instance variables
+    # such as @source_connection and @destination_connection.
+    #
     # @param [String] Relative path to file.
     def generate(file)
       connect
