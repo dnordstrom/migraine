@@ -28,7 +28,8 @@ through its only dependency, the
 
 ### The migration file
 
-Require the Migraine gem.
+You must now tell Migraine what data you want to migrate, and
+where. But first require the Migraine gem.
 
     require 'migraine'
 
