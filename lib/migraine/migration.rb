@@ -154,10 +154,6 @@ module Migraine
       adapter = uri.split(':')[0]
       send("database_schema_for_#{adapter}", uri)
     end
-
-    def log(message)
-      print "\n#{message}\n"
-    end
     
     # Generates a database schema for a MySQL database using the
     # available connections/instance variables. We do this by
@@ -178,10 +174,14 @@ module Migraine
             filter(table_schema: source_db, table_name: table).
             select(:column_name).all.map { |record| record[:column_name] }
 
-          tables.merge!({ record[:table_name] => columns })
+          tables.merge!({ table => columns })
         end
       
       tables
+    end
+
+    def log(message)
+      print "\n#{message}\n"
     end
   end
 end
