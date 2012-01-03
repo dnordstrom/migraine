@@ -36,6 +36,14 @@ through its only dependency, the
           end
         end
 
+2. Provide further adapter support for schema generator, and thus
+   migration file generation. As of now, migration files can only
+   be generated for MySQL databases since different databases
+   require different ways of generating a schema (which is used
+   for analyzing difference between source and destination.)
+
+   See `lib/migraine/schema_generator.rb` for further details.
+
 ## Using Migraine
 
 ### Create migration file
@@ -111,7 +119,7 @@ between source and destination, we need to generate database
 schemas as Hashes. Right now there is only a method for MySQL.
 
 Please feel free to add methods for other adapters as well. You
-can do this by forking Migraine and
+can do this by forking Migraine, editing
 `lib/migraine/schema_generator.rb` and add a new method. The file
 is commented with further instructions.
 
