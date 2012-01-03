@@ -17,23 +17,41 @@ Sequel Ruby gem.
     myproject.com
      > gem install migraine
 
-## Usage
+## Using Migraine
 
 ### Create migration file
 
     myproject.com
      > vim migrate.rb
 
-### Tell Migraine what and where to migrate
+### The migration file
 
-    require "migraine"
-    
+Require the Migraine gem.
+
+    require 'migraine'
+
+Create a migration instance, specifying source and destination
+databases.
+
     migration = Migraine::Migration.new(
       from: "mysql://root:root@localhost/myproj_old",
       to:   "mysql://root:root@localhost/myproj"
     )
+
+Map source tables to destination tables. If the columns are
+unchanged in destination you do not need to provide instructions
+in a block. Simply map source to destination table:
     
     migration.map "products" => "spree_products"
+
+If both source and destination tables also have the same name,
+you can make it even shorter.
+
+    migration.map "products"
+
+On the other hand, if the column names have changed at the
+destination, you can prodivde instructions on how to map them.
+
     migration.map "users" => "spree_users" do
       map "crypted_password" => "encrypted_password"
       map "salt" => "password_salt"
@@ -43,9 +61,168 @@ Sequel Ruby gem.
       map "perishable_token"
     end
 
+When you have provided the mappings, tell Migraine that you want
+to run the migration.
+
     migration.run
 
 ### Run migration file
 
     myproject.com
      > ruby migrate.rb
+
+## Generating migrations
+
+Migraine can even generate migration files for you. This is
+useful for databases with many tables, where you don't want to
+type them all out manually.
+
+### Adapter support
+
+At the moment, Migraine can only generate migrations
+for MySQL databases. This is because to analyze the differences
+between source and destination, we need to generate database
+schemas as Hashes. Right now there is only a method for MySQL.
+
+Please feel free to add methods for other adapters as well. You
+can do this by forking Migraine and
+`lib/migraine/schema_generator.rb` and add a new method. The file
+is commented with further instructions.
+
+### Create generation file
+
+You will need to create a file with generation instructions, just
+like you create a file for migrations.
+
+    myproject.com
+     > vim generate.rb
+
+### The generation file
+
+All you need to do in your new Ruby file is to create a
+`Migraine::Migration` with a source and destination, and tell
+Migraine to generate a migration file for it.
+
+    migration = Migraine::Migration.new(
+      from: "mysql://root:root@localhost/myproj_old",
+      to:   "mysql://root:root@localhost/myproj"
+    )
+
+    migration.generate 'migrate.rb'
+
+When you run this file using `ruby generate.rb` or similar, it
+will create a migrate.rb file containing table and column
+mappings.
+
+Migraine will try to determine the mappings by analyzing the
+differences between source and destination. When it can't, it
+will simply leave the destinations empty for you to fill in.
+
+### Table prefixes
+
+If the destination database has many of the same tables as
+source, but with an added prefix (e.g. source table 'users'
+should be mapped to destination table 'spree_users'), you can use
+the prefix method to tell Migraine about it and, and it will
+consider that when looking for destination tables.
+
+Add the following before your call to `Migration#generate`.
+
+    migration.prefix 'spree_'
+
+### Example
+
+Following is a generation file and part of its resulting
+migration file (abbreviated since Spree has many tables.)
+
+#### generate.rb
+
+    require 'migraine'
+
+    migration = Migraine::Migration.new(
+      from: 'mysql://root:root@localhost/migraine_from',
+      to: 'mysql://root:root@localhost/migraine_to'
+    )
+
+    migration.prefix 'spree_'
+    migration.generate 'generated.rb'
+
+#### ruby generate.rb
+
+#### generated.rb
+
+    require 'migraine'
+
+    migration = Migraine::Migration.new(
+      from: 'mysql://root:root@localhost/migraine_from',
+      to: 'mysql://root:root@localhost/migraine_to'
+    )
+
+    migration.map 'addresses' => 'spree_addresses'
+      map 'id'
+      map 'firstname'
+      map 'lastname'
+      map 'address1'
+      map 'address2'
+      map 'city'
+      map 'state_id'
+      map 'zipcode'
+      map 'country_id'
+      map 'phone'
+      map 'created_at'
+      map 'updated_at'
+      map 'state_name'
+      map 'alternative_phone'
+    end
+
+    migration.map 'adjustments' => 'spree_adjustments'
+      map 'id'
+      map 'order_id' => ''
+      map 'type' => ''
+      map 'amount'
+      map 'description' => ''
+      map 'position' => ''
+      map 'created_at'
+      map 'updated_at'
+      map 'adjustment_source_id' => ''
+      map 'adjustment_source_type' => ''
+    end
+
+    migration.map 'assets' => 'spree_assets'
+      map 'id'
+      map 'viewable_id'
+      map 'viewable_type'
+      map 'attachment_content_type'
+      map 'attachment_file_name'
+      map 'attachment_size'
+      map 'position'
+      map 'type'
+      map 'attachment_updated_at'
+      map 'attachment_width'
+      map 'attachment_height'
+      map 'alt'
+    end
+
+    migration.map 'calculators' => 'spree_calculators'
+      map 'id'
+      map 'type'
+      map 'calculable_id'
+      map 'calculable_type'
+      map 'created_at'
+      map 'updated_at'
+    end
+
+    migration.map 'checkouts' => ''
+      map 'id' => ''
+      map 'order_id' => ''
+      map 'email' => ''
+      map 'ip_address' => ''
+      map 'special_instructions' => ''
+      map 'bill_address_id' => ''
+      map 'created_at' => ''
+      map 'updated_at' => ''
+      map 'state' => ''
+      map 'ship_address_id' => ''
+      map 'shipping_method_id' => ''
+    end
+
