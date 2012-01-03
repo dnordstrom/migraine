@@ -1,12 +1,15 @@
 require 'migraine'
 
 migration = Migraine::Migration.new(
-  to: 'mysql://root:root@localhost/migraine_to',
-  from: 'mysql://root:root@localhost/migraine_from'
+  to: 'mysql://root:root@localhost/spree_old',
+  from: 'mysql://root:root@localhost/spree_new'
 )
 
-migration.map 'products' => 'spree_products' do
-  map 'name' => 'name'
+migration.map 'users' => 'spree_users' do
+  map 'email'
+  # ...
+  map 'crypted_password' => 'encrypted_password'
+  # ...
 end
 
 migration.run
