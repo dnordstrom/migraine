@@ -7,25 +7,6 @@ module Migraine
   class Migration < Map
     attr_accessor :prefix
 
-    # Specify source and destination databases. Argument should
-    # be a Hash containing :to and :from keys, specifying
-    # database connection URLs, e.g.:
-    #
-    #   migration = Migraine::Migration.new(
-    #     from: "mysql://root:root@localhost/myproj_old",
-    #     to:   "mysql://root:root@localhost/myproj"
-    #   )
-    #
-    # @param [Hash] Hash containing source and destination.
-    def initialize(source_and_destination)
-      begin
-        set_source_and_destination_from(source_and_destination)
-      rescue ArgumentError => e
-        puts e.message
-        exit
-      end
-    end
-
     # Runs the migration using the mappings that have been set
     # up. Walks through the nested Map objects, copying database
     # records from source to destination.
