@@ -42,7 +42,7 @@ through its only dependency, the
    require different ways of generating a schema (which is used
    for analyzing difference between source and destination.)
 
-   See `lib/migraine/schema_generator.rb` for further details.
+   See `lib/migraine/generator.rb` for further details.
 
 ## Using Migraine
 
@@ -120,7 +120,7 @@ schemas as Hashes. Right now there is only a method for MySQL.
 
 Please feel free to add methods for other adapters as well. You
 can do this by forking Migraine, editing
-`lib/migraine/schema_generator.rb` and add a new method. The file
+`lib/migraine/generator.rb` and add a new method. The file
 is commented with further instructions.
 
 ### Create generation file
