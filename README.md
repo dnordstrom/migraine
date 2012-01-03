@@ -50,13 +50,6 @@ destination table.
     
     migration.map "products" => "spree_products"
 
-**TODO:** In the future, Migraine will provide methods for dealing
-with differences in column types. You should then be able to tell
-Migraine how you want it to convert data from a source record to
-a destination record. This will probably be done by passing a
-block that takes source data as input, and relies on you to
-manipulate it and return the destination data.
-
 If source and destination tables have the same name in both
 databases, you can make it even shorter.
 
@@ -73,6 +66,13 @@ destination, you can provide instructions on how to map them.
       map "persistance_token"
       map "perishable_token"
     end
+
+**TODO:** In the future, Migraine will provide methods for dealing
+with differences in column types. You should then be able to tell
+Migraine how you want it to convert data from a source record to
+a destination record. This will probably be done by passing a
+block that takes source data as input, and relies on you to
+manipulate it and return the destination data.
 
 When you have provided the mappings, tell Migraine that you want
 to run the migration.
