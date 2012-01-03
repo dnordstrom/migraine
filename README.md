@@ -19,6 +19,23 @@ through its only dependency, the
     myproject.com
      > gem install migraine
 
+## TODO
+
+1. `Migraine::Map#map` (or separate method) should be able to deal
+   with column type differences between source and destination. The
+   method should accept a block argument that takes source record
+   as input, and relies on developer to manipulate that data and
+   return valid destination data.
+
+        migration.map 'table' do
+          map 'column' => 'new_column' do |source|
+            destination = "A new string from #{source}"
+            destination.upcase
+
+            destination
+          end
+        end
+
 ## Using Migraine
 
 ### Create migration file
