@@ -3,7 +3,7 @@ module Migraine
   # source and destination *databases* and provides methods to,
   # for example, run the migration. It also overrides
   # Migraine::Map#set_source_and_destination_from(s_and_d) to
-  # accept surce and destination in a more elegant way.
+  # accept source and destination in a more elegant way.
   class Migration < Map
     include Migraine::Generator
 
