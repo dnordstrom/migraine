@@ -12,7 +12,7 @@ module Migraine
     # through the `Migraine::Map#map` DSL method which adds
     # instances to the @maps array.
     #
-    #     Migraine::Map.new 'source_table' => 'destinatin_table'
+    #     Migraine::Map.new 'source_table' => 'destination_table'
     #
     # @param [Hash] Hash containing source and destination.
     def initialize(source_and_destination)
